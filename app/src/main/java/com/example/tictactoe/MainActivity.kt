@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             }
             playerID = !playerID
             if(chooseWinner(array) < 0) {
-                if (!isGameDraw(totalMovesMade)) playerTurn(playerID)
+                if (!isGameDraw(totalMovesMade , arrayOfButtons)) playerTurn(playerID)
             }
             else {
                 textView.text = if(chooseWinner(array) == 1) "WINNER : X" else " WINNER : O"
@@ -104,9 +104,10 @@ class MainActivity : AppCompatActivity() {
         textView.text = if(playerID) "Player X Turn" else "Player O Turn"
     }
 
-    fun isGameDraw(totalMovesMade: Int): Boolean {
+    fun isGameDraw(totalMovesMade: Int , arrayOfButtons: Array<Array<Button>>): Boolean {
         if(totalMovesMade == 9) {
             textView.text = "GAME DRAW"
+            disableButtons(arrayOfButtons)
             return true
         }
         return false
